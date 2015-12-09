@@ -1,28 +1,105 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+#include<iostream>
+#include <string>
+#include <ctype.h>
+#include <string.h>
 
-# Precompiled Headers
-*.gch
-*.pch
+using namespace std;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+const int NUMSIGNS = 12;
+const int WORDLEN = 80;
+const int NUMELEMENTS = 5;
+void showZodiacMenu ();
+int getZodiacIndexByYear (int year);
+int getZodiacIndexByWord (int); //string* animals, char* word
+void UppercaseZodiac (char* z);
+void PrintZodiacByElement();  // string* animals, string* elements
+void PrintZodiacCompatibility();
 
-# Fortran module files
-*.mod
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+int main()
+{
+    string  ZodiacAninals[NUMSIGNS] = {"RAT","OX","TIGER","RABBIT","DRAGON","SNAKE","HORSE",
+        "GOAT","MONKEY","ROOSTER","DOG","PIG"};
+    
+    string ZodiacElements[NUMSIGNS]={"water","earth","wood","earth","fire","fire"
+                            ,"earth","metal","metal","earth","water"};
+    
+    int userinput1, year,fyear,findex,sindex,syear, index;
+    do
+    {
+        showZodiacMenu();
+        cout << "Please select one of the choice from following: " << endl;
+        cin >> userinput1;
+        
+        if (userinput1 == 1)
+        {
+            cout << "Enter your birth year:" << endl;
+            cin >>  year;
+            index = getZodiacIndexByYear(year);
+            cout << ZodiacAninals[index] << " "<< ZodiacElements[index]<< endl;
+            cout << "\n" << endl;
+        }
+        else if (userinput1 == 2)
+        {
+            cout << "Enter 1st birth year: " << endl;
+            cin >> fyear;
+            cout << "Enter 2nd birth year: " << endl;
+            cin >> syear;
+            findex = getZodiacIndexByYear(fyear);
+            sindex = getZodiacIndexByYear(syear);
+            cout << ZodiacAninals[findex] << " " << ZodiacElements[findex]<< endl;
+            cout << ZodiacAninals[sindex] << " " << ZodiacElements[sindex]<< endl;
+        }
+        
+        
+        else if (userinput1 == 3)
+            
+            cout << "3" << endl;
+        else if (userinput1 ==  4)
+            PrintZodiacByElement();
+        else
+        {
+            if (userinput1 > 5)
+                cout << "You have entered an invalid choice! " << endl;
+        }
+    }
+    while ( userinput1 != 5);
+        
+    return 0;
+}
 
-# Executables
-*.exe
-*.out
-*.app
+void showZodiacMenu ()
+{
+    cout << "Welcome to the Chinese Zodiac Program." << endl;
+    cout << "What would you like to do? "<< endl;
+    cout << "1. Find out your Zodiac Animal and Element from your birth year. " << endl;
+    cout << "2. Find out the Zodiac Animals, Elements, and Compatibility of two people from their birth years." << endl;
+    cout << "3. Find out the Zodiac element of an Animal." << endl;
+    cout << "4. Print out the Zodiac Animals by Element." <<endl;
+    cout << "5. Quit." << endl;
+    
+    return;
+}
+
+int getZodiacIndexByYear (int year)
+{
+    int index;                        // index is the ans of module of year
+    index = (year % 12)-4;
+    return index;
+}
+
+int getZodiacIndexByWord (int animals) //string* animals, char* word
+{
+    cout << "2" << endl;
+    return animals ;
+}
+
+void UppercaseZodiac(char* z)
+{
+    return;
+}
+void PrintZodiacByElement() // string* animals, string* elements
+{
+    cout << "4" << endl;
+    return;
+}
